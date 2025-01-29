@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pratishruti</title>
+    <link rel="icon" href="/logo.jpg" />
+    <style>
+      button {
+        border-radius: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Edited Successfully <span style="color: green;">&#10004;</span></h2>
+    <form action="http://localhost:8080/admin/view/<%= name %>" method="post">
+      <button type="submit" title="Return to Admin Dashboard">Return</button>
+    </form>
+  </body>
+</html>

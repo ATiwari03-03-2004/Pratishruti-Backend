@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pratishruti</title>
+    <link rel="icon" href="/logo.jpg" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/editEvent.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="head">
+        <div class="return">
+          <form action="http://localhost:8080/admin/view/<%= name %>" method="post">
+            <button type="submit" title="Return">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+          </form>
+        </div>
+        <h2>Edit Event</h2>
+      </div>
+      <div class="form">
+        <form
+          class="editForm"
+          action="http://localhost:8080/admin/edit/<%= name %>/<%= id %>?_method=PATCH"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <div class="name">
+            <label for="name">Event Name </label>
+            <br />
+            <input
+              type="text"
+              name="eventname"
+              id="name"
+              title="Enter Event Name"
+              value="<%= event.eventname %>"
+            />
+          </div>
+          <br />
+          <div class="venue">
+            <label for="venue">Venue </label>
+            <br />
+            <input
+              type="text"
+              name="venue"
+              id="venue"
+              title="Enter Event Venue"
+              value="<%= event.venue %>"
+            />
+          </div>
+          <br />
+          <div class="date">
+            <label for="date">Event Date </label>
+            <br />
+            <input
+              type="date"
+              name="date"
+              id="date"
+              title="Enter Event Date"
+              value="<%= event.date %>"
+            />
+          </div>
+          <br />
+          <div class="time">
+            <label for="time">Time (24 hr format) </label>
+            <br />
+            <input
+              type="time"
+              name="time"
+              id="time"
+              title="Enter Event Time"
+              value="<%= event.time %>"
+            />
+          </div>
+          <br />
+          <div class="deadline">
+            <label for="deadline">Registration Deadline </label>
+            <br />
+            <input
+              type="date"
+              name="registrationDeadline"
+              id="deadline"
+              title="Enter Event Registration Deadline"
+              value="<%= event.registrationDeadline %>"
+            />
+          </div>
+          <br />
+          <div class="details">
+            <label for="details">Event Details </label>
+            <br />
+            <textarea
+              name="eventDetails"
+              id="details"
+              title="Enter Event Details"
+              rows="8"
+            >
+<%= event.eventDetails %></textarea
+            >
+          </div>
+          <br />
+          <div
+              class="preview"
+              title="Image Preview (Upload Image for Preview)"
+            >
+              <div class="previewImg">
+                <img src="<%= event.imgPath %>" alt="img" />
+              </div>
+              <div class="previewAbsImg">
+                <img src="<%= event.absImgPath %>" alt="absImg" />
+              </div>
+            </div>
+          <div class="uploadImg">
+            <label for="img">Event Image </label>
+            <br />
+            <label class="special" for="img" style="display: inline-block; width: 3rem;"><i class="fa-solid fa-image"></i></label>
+            <input
+              type="file"
+              name="imgPath"
+              id="img"
+              style="display: none;"
+              accept="image/*"
+            />
+          </div>
+          <br />
+          <div class="uploadAbsImg">
+            <label for="absImg">Absolute Image </label>
+            <br />
+            <label class="special" for="absImg" style="display: inline-block; width: 3rem;"><i class="fa-solid fa-image"></i></label>
+            <input
+              type="file"
+              name="absImgPath"
+              id="absImg"
+              accept="image/*"
+              style="display: none;"
+            />
+          </div>
+          <br />
+          <div class="gflink">
+            <label for="gflink">Google Form Link </label>
+            <br />
+            <input
+              type="text"
+              name="googleFormLink"
+              id="gflink"
+              value="<%= event.googleFormLink %>"
+            />
+          </div>
+          <br />
+          <div class="password">
+            <label for="password">Admin Password </label>
+            <br />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              title="Enter Admin Password"
+            />
+            <div class="checkbox">
+              <input type="checkbox" id="checkbox" />
+              <label for="checkbox"> Show Password</label>
+            </div>
+          </div>
+          <br />
+          <div class="submit">
+            <button type="submit">Edit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="/editEvent.js"></script>
+  </body>
+</html>
