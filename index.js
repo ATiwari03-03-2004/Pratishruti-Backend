@@ -26,7 +26,7 @@ main()
   .catch((err) => console.log(err));
 
 async function main() {
-  await mongoose.connect("mongodb://127.0.0.1:27017/pratishruti");
+  await mongoose.connect(process.env.mongoURI);
 }
 
 app.set("view engine", "ejs");
@@ -42,7 +42,6 @@ app.use(cors());
 app.use(methodOverride("_method"));
 
 const multer = require("multer");
-const { json } = require("stream/consumers");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     if (file.mimetype.startsWith("image")) {
