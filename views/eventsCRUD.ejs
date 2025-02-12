@@ -18,7 +18,7 @@
     <div class="main">
       <div class="head">
         <div class="return">
-          <form action="http://localhost:8080/admin" method="get">
+          <form action="/admin" method="get">
             <button type="submit" title="Logout" id="return">
               <i class="fa-solid fa-arrow-left"></i>
             </button>
@@ -28,7 +28,7 @@
       </div>
       <div class="add">
         <form
-          action="http://localhost:8080/admin/create/<%= name %>"
+          action="/admin/create/<%= name %>"
           method="get"
           style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem"
         >
@@ -61,7 +61,7 @@
           <div class="operations">
             <div class="edit">
               <form
-                action="http://localhost:8080/admin/edit/<%= name %>/<%= event._id %>"
+                action="/admin/edit/<%= name %>/<%= event._id %>"
                 method="get"
               >
                 <button type="submit" title="Edit Event">Edit</button>
@@ -69,7 +69,7 @@
             </div>
             <div class="delete">
               <form
-                action="http://localhost:8080/admin/delete/<%= name %>/<%= event._id %>?_method=DELETE"
+                action="/admin/delete/<%= name %>/<%= event._id %>?_method=DELETE"
                 method="get"
               >
                 <button type="submit" title="Delete Event">Delete</button>

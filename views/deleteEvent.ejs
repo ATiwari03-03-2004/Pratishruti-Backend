@@ -19,7 +19,7 @@
       <div class="head">
         <div class="return">
           <form
-            action="http://localhost:8080/admin/view/<%= name %>"
+            action="/admin/view/<%= name %>"
             method="post"
           >
             <button type="submit" title="Return">
@@ -32,7 +32,7 @@
       <div class="form">
         <form
           class="deleteForm"
-          action="http://localhost:8080/admin/delete/<%= name %>/<%= id %>?_method=DELETE"
+          action="/admin/delete/<%= name %>/<%= id %>?_method=DELETE"
           method="post"
         >
           <div class="password">

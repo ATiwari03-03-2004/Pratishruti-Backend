@@ -18,7 +18,7 @@
     <div class="main">
       <div class="head">
         <div class="return">
-          <form action="http://localhost:8080/admin/view/<%= name %>" method="post">
+          <form action="/admin/view/<%= name %>" method="post">
             <button type="submit" title="Return">
               <i class="fa-solid fa-arrow-left"></i>
             </button>
@@ -30,7 +30,7 @@
         <form
           class="editForm"
           enctype="multipart/form-data"
-          action="http://localhost:8080/admin/create/<%= name %>"
+          action="/admin/create/<%= name %>"
           method="post"
         >
           <div class="name">
