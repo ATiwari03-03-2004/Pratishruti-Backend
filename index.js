@@ -87,6 +87,11 @@ app.get("/admin/edit/:adminame/:id", (req, res) => {
     .catch((err) => res.render("contactAdmin.ejs"));
 });
 
+app.get("/", (req, res) => {
+  res.render("home.ejs");
+});
+
+
 app.patch(
   "/admin/edit/:adminame/:id",
   upload.fields([
