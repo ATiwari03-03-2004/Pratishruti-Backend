@@ -91,7 +91,6 @@ app.get("/", (req, res) => {
   res.render("home.ejs");
 });
 
-
 app.patch(
   "/admin/edit/:adminame/:id",
   upload.fields([
