@@ -13,72 +13,84 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="/eventsCRUD.css" />
+    <style>
+      table tr td,
+      th {
+        padding: 0.3rem;
+        text-align: center;
+      }
+
+      i {
+        color: black;
+      }
+
+      button {
+        border-radius: 0.5rem;
+        background-color: black;
+        color: white;
+        border: none;
+        padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+      }
+
+      button:hover {
+        background-color: gray;
+      }
+
+      input {
+        border-radius: 0.6rem;
+        border: 1px solid black;
+        padding: 0.6rem;
+        accent-color: black;
+      }
+    </style>
   </head>
   <body>
     <div class="main">
       <div class="head">
         <div class="return">
-          <form action="/admin" method="get">
+          <form action="/admin/view/<%= name %>" method="post">
             <button type="submit" title="Logout" id="return">
               <i class="fa-solid fa-arrow-left"></i>
             </button>
           </form>
         </div>
-        <h2>Manage Events</h2>
+        <h2>Manage Section Cup Leader Board</h2>
       </div>
-      <div class="add">
-        <form
-          action="/admin/create/<%= name %>"
-          method="get"
-          style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem"
-        >
-          <button type="submit">Create Event</button>
-        </form>
-      </div>
-      <div class="events">
-        <% for (event of events) { %>
-        <div class="event">
-          <div class="details">
-            <h3>Event: <%= event.eventname %></h3>
-            <p>Venue: <%= event.venue %></p>
-            <p>Date: <%= event.date %></p>
-            <p>Time: <%= event.time %></p>
-            <p>Registration Deadline: <%= event.registrationDeadline %></p>
-            <p>Event Details: <%= event.eventDetails %></p>
-            <div
-              class="preview"
-              title="Image Preview (Upload Image for Preview)"
-            >
-              <div class="previewImg">
-                <img src="<%= event.imgPath %>" alt="img" />
-              </div>
-              <div class="previewAbsImg">
-                <img src="<%= event.absImgPath %>" alt="absImg" />
-              </div>
-            </div>
-            <p><a href="<%= event.googleFormLink %>">Google Form</a></p>
-          </div>
-          <div class="operations">
-            <div class="edit">
-              <form
-                action="/admin/edit/<%= name %>/<%= event._id %>"
-                method="get"
-              >
-                <button type="submit" title="Edit Event">Edit</button>
-              </form>
-            </div>
-            <div class="delete">
-              <form
-                action="/admin/delete/<%= name %>/<%= event._id %>?_method=DELETE"
-                method="get"
-              >
-                <button type="submit" title="Delete Event">Delete</button>
-              </form>
-            </div>
-          </div>
-        </div>
-        <% } %>
+      <div class="board">
+        <table border="black">
+          <thead>
+            <tr>
+              <th>Section</th>
+              <th>Score</th>
+              <th>Update Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (position of board) { %>
+            <tr>
+              <td><%= position.section %></td>
+              <td><%= position.score %></td>
+              <td>
+                <form
+                  action="/updateScore/<%= name %>/<%= position._id %>"
+                  method="post"
+                  style="display: flex; flex-direction: row;"
+                >
+                  <input
+                    type="number"
+                    name="score"
+                    style="width: 4rem"
+                    placeholder="<%= position.score %>"
+                    value="<%= position.score %>"
+                  /> &nbsp;&nbsp;<button type="submit">Update</button>
+                </form>
+              </td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
       </div>
     </div>
+    <script src="/leader.js"></script>
   </body>
 </html>

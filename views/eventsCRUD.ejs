@@ -27,13 +27,21 @@
         <h2>Manage Events</h2>
       </div>
       <div class="add">
-        <form
+        <div class="create-btn">
+          <form
           action="/admin/create/<%= name %>"
           method="get"
           style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem"
         >
-          <button type="submit">Create Event</button>
-        </form>
+            <button type="submit">Create Event</button>
+          </form>
+        </div>
+        <div class="leaderBoard">
+          <form action="/leaderBoard/<%= name %>" method="get"
+          style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem">
+            <button type="submit">Section Cup Leader Board</button>
+          </form>
+        </div>
       </div>
       <div class="events">
         <% for (event of events) { %>
