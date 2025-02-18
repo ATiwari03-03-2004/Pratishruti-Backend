@@ -488,5 +488,3 @@ app.post("/admin/view/:adminame", (req, res) => {
 app.listen(port, () => {
   console.log(`Listening to request from ${port} port!`);
 });
-
-module.exports = app;

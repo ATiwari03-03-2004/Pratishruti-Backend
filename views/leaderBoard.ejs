@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pratishruti</title>
+    <link rel="icon" href="/logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/eventsCRUD.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="head">
+        <div class="return">
+          <form action="/admin" method="get">
+            <button type="submit" title="Logout" id="return">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+          </form>
+        </div>
+        <h2>Manage Events</h2>
+      </div>
+      <div class="add">
+        <form
+          action="/admin/create/<%= name %>"
+          method="get"
+          style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem"
+        >
+          <button type="submit">Create Event</button>
+        </form>
+      </div>
+      <div class="events">
+        <% for (event of events) { %>
+        <div class="event">
+          <div class="details">
+            <h3>Event: <%= event.eventname %></h3>
+            <p>Venue: <%= event.venue %></p>
+            <p>Date: <%= event.date %></p>
+            <p>Time: <%= event.time %></p>
+            <p>Registration Deadline: <%= event.registrationDeadline %></p>
+            <p>Event Details: <%= event.eventDetails %></p>
+            <div
+              class="preview"
+              title="Image Preview (Upload Image for Preview)"
+            >
+              <div class="previewImg">
+                <img src="<%= event.imgPath %>" alt="img" />
+              </div>
+              <div class="previewAbsImg">
+                <img src="<%= event.absImgPath %>" alt="absImg" />
+              </div>
+            </div>
+            <p><a href="<%= event.googleFormLink %>">Google Form</a></p>
+          </div>
+          <div class="operations">
+            <div class="edit">
+              <form
+                action="/admin/edit/<%= name %>/<%= event._id %>"
+                method="get"
+              >
+                <button type="submit" title="Edit Event">Edit</button>
+              </form>
+            </div>
+            <div class="delete">
+              <form
+                action="/admin/delete/<%= name %>/<%= event._id %>?_method=DELETE"
+                method="get"
+              >
+                <button type="submit" title="Delete Event">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
