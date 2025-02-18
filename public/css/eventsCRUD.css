@@ -40,9 +40,21 @@
   }
 }
 
+i {
+  color: black;
+}
+
 button {
   border-radius: 0.5rem;
-  margin-right: 0.5rem;
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+  margin-right: 0.4rem;
+}
+
+button:hover {
+  background-color: gray;
 }
 
 .preview {

@@ -34,10 +34,12 @@ input {
 
 .name {
     margin-bottom: 0.8rem;
+    padding: 0.4rem;
 }
 
 .password {
     margin-bottom: 0.8rem;
+    padding: 0.4rem;
 }
 
 .checkbox {
@@ -46,4 +48,12 @@ input {
 
 button {
     border-radius: 0.5rem;
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+}
+
+button:hover {
+    background-color: gray;
 }
