@@ -20,6 +20,7 @@ const mongoose = require("mongoose");
 const Admin = require("./models/admin.js");
 const Event = require("./models/event.js");
 const Log = require("./models/adminLog.js");
+const LeaderBoard = require("./models/leaderBoard.js");
 
 main()
   .then((res) => console.log("Connected to DB."))
@@ -482,6 +483,43 @@ app.post("/admin/view/:adminame", (req, res) => {
   let { adminame: name } = req.params;
   Event.find()
     .then((data) => res.render("eventsCRUD.ejs", { name, events: data }))
+    .catch((err) => res.render("contactAdmin.ejs"));
+});
+
+app.get("/leaderBoard/:name", (req, res) => {
+  LeaderBoard.find({})
+    .sort({ score: -1 })
+    .then((data) =>
+      res.render("leaderBoard.ejs", { name: req.params.name, board: data })
+    )
+    .catch((err) => res.render("contactAdmin.ejs"));
+});
+
+app.post("/updateScore/:name/:id", (req, res) => {
+  let { id, name } = req.params;
+  let { score: scr } = req.body;
+  LeaderBoard.findByIdAndUpdate(
+    id,
+    { $set: { score: parseInt(scr) } },
+    { runValidators: true, returnDocument: "after" }
+  )
+    .then((data1) => {
+      LeaderBoard.find({}).sort({ score: -1 }).then((data) =>
+        res.render("leaderBoard.ejs", { name, board: data })
+      );
+    })
+    .catch((err) => res.render("contactAdmin.ejs"));
+});
+
+app.get("/admin/view/:adminame", (req, res) => {
+  let { adminame: name } = req.params;
+  Admin.find({ adminName: name })
+    .then((data1) => {
+      if (data1 == null) res.render("unauthorizedAccess.ejs");
+      Event.find({}).then((data) => {
+        res.render("eventsCRUD.ejs", { name, events: data });
+    });
+    })
     .catch((err) => res.render("contactAdmin.ejs"));
 });
 
