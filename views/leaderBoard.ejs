@@ -71,25 +71,21 @@
               <td><%= position.section %></td>
               <td><%= position.score %></td>
               <td>
-                <form
-                  action="/updateScore/<%= name %>/<%= position._id %>"
-                  method="post"
-                  style="display: flex; flex-direction: row;"
-                >
-                  <input
-                    type="number"
-                    name="score"
-                    style="width: 4rem"
-                    placeholder="<%= position.score %>"
-                    value="<%= position.score %>"
-                  /> &nbsp;&nbsp;<button type="submit">Update</button>
-                </form>
+                <input
+                  type="number"
+                  name="score"
+                  style="width: 4rem"
+                  placeholder="<%= position.score %>"
+                  id="<%= position._id %>"
+                  value="<%= position.score %>"
+                />
               </td>
             </tr>
             <% } %>
           </tbody>
         </table>
       </div>
+      <button type="button" class="updateBtn <%= name %>" style="margin-top: 0.4rem;">Update Scores</button>
     </div>
     <script src="/leader.js"></script>
   </body>

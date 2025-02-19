@@ -495,20 +495,9 @@ app.get("/leaderBoard/:name", (req, res) => {
     .catch((err) => res.render("contactAdmin.ejs"));
 });
 
-app.post("/updateScore/:name/:id", (req, res) => {
-  let { id, name } = req.params;
-  let { score: scr } = req.body;
-  LeaderBoard.findByIdAndUpdate(
-    id,
-    { $set: { score: parseInt(scr) } },
-    { runValidators: true, returnDocument: "after" }
-  )
-    .then((data1) => {
-      LeaderBoard.find({}).sort({ score: -1 }).then((data) =>
-        res.render("leaderBoard.ejs", { name, board: data })
-      );
-    })
-    .catch((err) => res.render("contactAdmin.ejs"));
+app.post("/updateScore/:name", (req, res) => {
+  let { name } = req.params;
+  console.log(req.body);
 });
 
 app.get("/admin/view/:adminame", (req, res) => {
