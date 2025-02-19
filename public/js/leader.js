@@ -10,7 +10,7 @@ let inputs = document.querySelectorAll("input");
 let updateBtn = document.querySelector(".updateBtn");
 let inputArr = [...inputs];
 
-let url = `https://admin.pratishruti25.com/updateScore/${updateBtn.classList[1]}`;
+let url = `https://pratishruti-backend.onrender.com/updateScore/${updateBtn.classList[1]}`;
 
 async function setScore(link) {
     const list = inputArr.map((e) => {
