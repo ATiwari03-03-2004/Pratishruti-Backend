@@ -6,6 +6,11 @@
             "use": "@vercel/node"
         }
     ],
+    "functions": {
+        "index.js": {
+            "maxDuration": 30
+        }
+    },
     "rewrites": [
         {
             "source": "/css/(.*)",
