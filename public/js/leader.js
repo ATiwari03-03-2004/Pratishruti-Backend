@@ -10,17 +10,17 @@ let inputs = document.querySelectorAll("input");
 let updateBtn = document.querySelector(".updateBtn");
 let inputArr = [...inputs];
 
-let url = `https://pratishruti-backend.onrender.com/updateScore/${updateBtn.classList[1]}`;
+let url = `http://localhost:8080/updateScore/${updateBtn.classList[1]}`;
 
 async function setScore(link) {
-    const list = inputArr.map((e) => {
+    let list = inputArr.map((e) => {
         return [e.id, e.value];
     });
-    console.log(url, list);
-    await fetch(link, {method: "POST", body: JSON.stringify(list)});
+    let response = await fetch(link, {method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({scores: list})});
+    if (response.ok) window.location.reload();
+    else alert("Failed to update scores.");
 }
 
 updateBtn.addEventListener("click", function (e) {
-    console.log("demo1");
     setScore(url);
 });

@@ -489,15 +489,32 @@ app.post("/admin/view/:adminame", (req, res) => {
 app.get("/leaderBoard/:name", (req, res) => {
   LeaderBoard.find({})
     .sort({ score: -1 })
-    .then((data) =>
-      res.render("leaderBoard.ejs", { name: req.params.name, board: data })
-    )
+    .then((data) => {
+      res.render("leaderBoard.ejs", { name: req.params.name, board: data });
+    })
     .catch((err) => res.render("contactAdmin.ejs"));
 });
 
-app.post("/updateScore/:name", (req, res) => {
-  let { name } = req.params;
-  console.log(req.body);
+async function setScore(scores) {
+  for (scr of scores) {
+    await LeaderBoard.findByIdAndUpdate(
+      scr[0],
+      { $set: { score: parseInt(scr[1]) } },
+      { runValidators: true, returnDocument: "after" }
+    );
+  }
+}
+
+app.post("/updateScore/:name", async (req, res) => {
+  try {
+    let { name } = req.params;
+    let { scores } = req.body;
+    await setScore(scores);
+    await LeaderBoard.find({}).sort({ score: -1 });
+    res.redirect(`/leaderBoard/${name}`);
+  } catch (err) {
+    res.render("contactAdmin.ejs");
+  }
 });
 
 app.get("/admin/view/:adminame", (req, res) => {
@@ -507,7 +524,7 @@ app.get("/admin/view/:adminame", (req, res) => {
       if (data1 == null) res.render("unauthorizedAccess.ejs");
       Event.find({}).then((data) => {
         res.render("eventsCRUD.ejs", { name, events: data });
-    });
+      });
     })
     .catch((err) => res.render("contactAdmin.ejs"));
 });
