@@ -11,6 +11,10 @@ This is the backend system for **Pratishruti**, the annual college fest, designe
 - **Multer** – Middleware for handling multipart form data (file uploads)  
 - **Imgur API** – Cloud-based image hosting and retrieval   
 - **dotenv** – Environment variables for API keys and database credentials  
+- **Render** – Used for deployment  
+
+## Deployment
+The backend is deployed on **Render** and can be accessed at: [Pratishruti Backend](https://pratishruti-backend.onrender.com/)
 
 ## Key Features
 
@@ -44,3 +48,6 @@ The backend exposes **RESTful API endpoints** to interact with the database and 
 Feel free to raise an **issue** or **pull request** if you find any bugs or want to improve functionality.
 
 🚀 **Happy Coding!**
+
+⚠ **Disclaimer:** When using the **Imgur API**, ensure that you comply with [Imgur's API Terms of Service](https://apidocs.imgur.com/) to avoid any violations or restrictions.
+
